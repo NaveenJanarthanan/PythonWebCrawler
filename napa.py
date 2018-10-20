@@ -1,10 +1,9 @@
 import json
 import requests
-import sqlite3
 from bs4 import BeautifulSoup
 
-connection = sqlite3.connect("inspections.db")
-#results = []
+
+
 
 page=requests.get("http://ca.healthinspections.us/napa/search.cfm?start=1&1=1&sd=01/01/1970&ed=03/01/2017&kw1=&kw2=&kw3="
         "&rel1=N.permitName&rel2=N.permitName&rel3=N.permitName&zc=&dtRng=YES&pre=similar")
@@ -33,21 +32,21 @@ soup9 = BeautifulSoup(page9.text, 'html.parser')
 page10=requests.get("http://ca.healthinspections.us/_templates/135/Food%20Inspection/_report_full.cfm?domainID=135&inspectionID=341504&dsn=dhd_135")
 soup10 = BeautifulSoup(page10.text, 'html.parser')
 def main():
-    facility_name = soup1.find_all('span',class_= 'blackline')[0].get_text()
-    address = soup1.find_all('span', class_='blackline')[4].get_text()
-    inspection_date = soup1.find_all('span', class_='blackline')[2].get_text()
-    inspection_type = soup1.find_all('span', class_='blackline')[9].get_text()
-    inspection_grade = soup1.find_all('td', class_='center bold')[1].get_text()
+    facility_name1 = soup1.find_all('span',class_= 'blackline')[0].get_text()
+    address1 = soup1.find_all('span', class_='blackline')[4].get_text()
+    inspection_date1 = soup1.find_all('span', class_='blackline')[2].get_text()
+    inspection_type1 = soup1.find_all('span', class_='blackline')[9].get_text()
+    inspection_grade1 = soup1.find_all('td', class_='center bold')[1].get_text()
     print("____________________________________________________________________________")
-    print("Facility Name: ", facility_name)
+    print("Facility Name: ", facility_name1)
     print("---------------------------------")
-    print("Address: ", address)
+    print("Address: ", address1)
     print("---------------------------------")
-    print("Inspection Date: ", inspection_date)
+    print("Inspection Date: ", inspection_date1)
     print("---------------------------------")
-    print("Inspection Type: ", inspection_type)
+    print("Inspection Type: ", inspection_type1)
     print("----------------------------------")
-    print("Inspection Grade: ", inspection_grade)
+    print("Inspection Grade: ", inspection_grade1)
     print("-----------------------------------")
     print("Out-of-compliance Violation:")
     compliance1_1 = soup1.find_all('td', {'style' : 'text-align: left;'})[34].get_text()
@@ -247,14 +246,17 @@ def main():
     print("-----------------------------------")
     print("Out-of-compliance Violation:")
     print("None")
+
+
+
 if __name__ == '__main__':
     main()
 
-data  = {'facility_name' : soup1.find_all('span',class_= 'blackline')[0].get_text(),
-         'address' : soup1.find_all('span', class_='blackline')[4].get_text(),
-         'inspection_date' : soup1.find_all('span', class_='blackline')[2].get_text(),
-         'inspection_type' : soup1.find_all('span', class_='blackline')[9].get_text(),
-         'inspection_grade': soup1.find_all('td', class_='center bold')[1].get_text(),
+data  = {'facility_name1' : soup1.find_all('span',class_= 'blackline')[0].get_text(),
+         'address1' : soup1.find_all('span', class_='blackline')[4].get_text(),
+         'inspection_date1' : soup1.find_all('span', class_='blackline')[2].get_text(),
+         'inspection_type1' : soup1.find_all('span', class_='blackline')[9].get_text(),
+         'inspection_grade1': soup1.find_all('td', class_='center bold')[1].get_text(),
          'compliance1_1' : soup1.find_all('td', {'style' : 'text-align: left;'})[34].get_text(),
          'compliance1_2' : soup1.find_all('td', {'style' : 'text-align: left;'})[43].get_text(),
          'compliance1_3' : soup1.find_all('td', {'style' : 'text-align: left;'})[47].get_text(),
@@ -318,6 +320,3 @@ data  = {'facility_name' : soup1.find_all('span',class_= 'blackline')[0].get_tex
 #print(pythontojson)
 with open ("data_file.json", "w") as write_file:
     json.dump(data, write_file)
-
-
-    CREATE TABLE facility ()
