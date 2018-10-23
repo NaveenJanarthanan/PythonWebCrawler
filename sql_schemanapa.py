@@ -37,11 +37,68 @@ for x in facility_data:
     cursor.execute(sql_command)
 
 
-#sql_command = """INSERT INTO mainstreet (address, inspectiond, inspectiont, inspectiong)
-#    VALUES(NULL, "facility_name1", "address1", "inspection_date1", "inspection_type1", "inspection_grade");"""
+
+#Uncomment the line below if you're running the program more than once, or you can delete the data file
+cursor.execute("""DROP TABLE compliance;""")
+sql_c = """
+CREATE TABLE compliance (
+facility_number INTEGER PRIMARY KEY,
+fname VARCHAR (20),
+violation_number1 VARCHAR (2) DEFAULT NULL,
+violation_name1 VARCHAR (30) DEFAULT NULL,
+violation_number2 VARCHAR (2) DEFAULT NULL,
+violation_name2 VARCHAR (60) DEFAULT NULL,
+violation_number3 VARCHAR (2) DEFAULT NULL,
+violation_name3 VARCHAR (30) DEFAULT NULL,
+violation_number4 VARCHAR (2) DEFAULT NULL,
+violation_name4 VARCHAR (30) DEFAULT NULL,
+violation_number5 VARCHAR (2) DEFAULT NULL,
+violation_name5 VARCHAR (30) DEFAULT NULL);"""
+
+cursor.execute(sql_c)
+sql_c = """INSERT INTO compliance (facility_number, fname, violation_number1, violation_name1, violation_number2, violation_name2, violation_number3, violation_name3, violation_number4, violation_name4, violation_number5, violation_name5)
+    VALUES (NULL, "1313 MAIN STREET", "35", "Equipment/Utensils - approved; installed; clean; good repair; capacity", "44", "Premises; personal/cleaning items; vermin-proofing", "48", "Plan Review", NULL, NULL, NULL, NULL);"""
+cursor.execute(sql_c)
 
 
+sql_c = """INSERT INTO compliance (facility_number, fname, violation_number1, violation_name1, violation_number2, violation_name2, violation_number3, violation_name3, violation_number4, violation_name4, violation_number5, violation_name5)
+    VALUES  (NULL, "641 MAIN STREET", "6", "Adequate handwashing facilities supplied & accessible", "35", "Equipment/Utensils - approved; installed; clean; good repair; capacity", NULL, NULL, NULL, NULL, NULL, NULL);"""
+cursor.execute(sql_c)
 
+sql_c = """INSERT INTO compliance (facility_number, fname, violation_number1, violation_name1, violation_number2, violation_name2, violation_number3, violation_name3, violation_number4, violation_name4, violation_number5, violation_name5)
+    VALUES  (NULL, "A & A KITCHENS LLC", "14", "Food contact surfaces: clean and sanitized", "35", "Equipment/Utensils - approved; installed; clean; good repair; capacity", NULL, NULL, NULL, NULL, NULL, NULL);"""
+cursor.execute(sql_c)
+
+sql_c = """INSERT INTO compliance (facility_number, fname, violation_number1, violation_name1, violation_number2, violation_name2, violation_number3, violation_name3, violation_number4, violation_name4, violation_number5, violation_name5)
+    VALUES  (NULL, "A & B MARKET", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);"""
+cursor.execute(sql_c)
+
+sql_c = """INSERT INTO compliance (facility_number, fname, violation_number1, violation_name1, violation_number2, violation_name2, violation_number3, violation_name3, violation_number4, violation_name4, violation_number5, violation_name5)
+    VALUES  (NULL, "A DOZEN VINTNERS", "35", "Equipment/Utensils - approved; installed; clean; good repair; capacity", "41", "Plumbing; proper backflow devices",  NULL, NULL, NULL, NULL, NULL, NULL);"""
+cursor.execute(sql_c)
+
+sql_c = """INSERT INTO compliance (facility_number, fname, violation_number1, violation_name1, violation_number2, violation_name2, violation_number3, violation_name3, violation_number4, violation_name4, violation_number5, violation_name5)
+    VALUES  (NULL, "A DOZEN VINTNERS", "41", "Plumbing; proper backflow devices",  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);"""
+cursor.execute(sql_c)
+
+sql_c = """INSERT INTO compliance (facility_number, fname, violation_number1, violation_name1, violation_number2, violation_name2, violation_number3, violation_name3, violation_number4, violation_name4, violation_number5, violation_name5)
+    VALUES  (NULL, "A&W/KFC", "14", "Food contact surfaces: clean and sanitized","41", "Plumbing; proper backflow devices", "42", "Garbage and refuse properly disposed; facilities maintained", "44", "Premises; personal/cleaning items; vermin-proofing", "45", "Floors, walls and ceilings: built, maintained, and clean");"""
+cursor.execute(sql_c)
+
+sql_c = """INSERT INTO compliance (facility_number, fname, violation_number1, violation_name1, violation_number2, violation_name2, violation_number3, violation_name3, violation_number4, violation_name4, violation_number5, violation_name5)
+    VALUES  (NULL, "A-1 FOOD & LIQUOR INC", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);"""
+cursor.execute(sql_c)
+
+sql_c = """INSERT INTO compliance (facility_number, fname, violation_number1, violation_name1, violation_number2, violation_name2, violation_number3, violation_name3, violation_number4, violation_name4, violation_number5, violation_name5)
+    VALUES  (NULL, "A-1 SANDWICH CO (DIET TO GO)", "39", "Thermometers provided and accurate",  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);"""
+cursor.execute(sql_c)
+
+sql_c = """INSERT INTO compliance (facility_number, fname, violation_number1, violation_name1, violation_number2, violation_name2, violation_number3, violation_name3, violation_number4, violation_name4, violation_number5, violation_name5)
+    VALUES  (NULL, "ABC FOODS", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);"""
+cursor.execute(sql_c)
 connection.commit()
 
 connection.close()
+
+
+#sql_c = format_str.format(facility=p[0], vnumber1=p[1], vname1=p[2], vnumber2=p[3], vname2=p[4], vnumber3=p[5], vname3=p[6], vnumber4=p[7],  vname4=p[8], vnumber5=p[9], vname5=p[10])
