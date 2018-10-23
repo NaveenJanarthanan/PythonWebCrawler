@@ -5,6 +5,7 @@ cursor = connection.cursor()
 #Uncomment the line below if you're running the program more than once, or you can delete the data file
 #cursor.execute("""DROP TABLE data;""")
 
+#the data to be stored in the table "data"
 facility_data = [ ("1313 MAIN STREET", "1313 MAIN ST", "NAPA", "CA", "94559", "11/02/2016", "Routine", "A"),
                   ("641 MAIN STREET", "641 MAIN ST", "SAINT HELENA", "CA", "94574", "11/22/2016","Routine", "A"),
                   ("A & A KITCHENS LLC", "391 LA FATA ST", "ST HELENA", "CA", "94574", "04/03/2012", "Routine", "A"),
@@ -16,6 +17,7 @@ facility_data = [ ("1313 MAIN STREET", "1313 MAIN ST", "NAPA", "CA", "94559", "1
                   ("A-1 SANDWICH CO (DIET TO GO)", "429 Cabot RD S", "Francisco", "CA", "94080", "01/25/2013", "Routine", "A"),
                   ("ABC FOODS", "1825 Old Sonoma RD", "Napa", "CA", "94558", "03/10/2016", "Routine", "A")]
 
+#creates table data
 sql_command = """
 CREATE TABLE data (
 facility_number INTEGER PRIMARY KEY,
@@ -29,6 +31,7 @@ inspectiont VARCHAR(10),
 inspectiong CHAR(1));"""
 
 cursor.execute(sql_command)
+#inserts the data from facility_data into the table "data"
 for x in facility_data:
     format_str = """INSERT INTO data (facility_number, fname, saddress, city, state, zipcode, inspectiond, inspectiont, inspectiong)
     VALUES (NULL, "{facility}", "{add}", "{c}", "{s}", "{z}", "{date}", "{type}", "{grade}");"""
@@ -40,6 +43,8 @@ for x in facility_data:
 
 #Uncomment the line below if you're running the program more than once, or you can delete the data file
 #cursor.execute("""DROP TABLE compliance;""")
+
+#creates table compliance
 sql_c = """
 CREATE TABLE compliance (
 facility_number INTEGER PRIMARY KEY,
@@ -56,6 +61,8 @@ violation_number5 VARCHAR (2) DEFAULT NULL,
 violation_name5 VARCHAR (30) DEFAULT NULL);"""
 
 cursor.execute(sql_c)
+
+#inserts the compliance violations for each restaurant into the table
 sql_c = """INSERT INTO compliance (facility_number, fname, violation_number1, violation_name1, violation_number2, violation_name2, violation_number3, violation_name3, violation_number4, violation_name4, violation_number5, violation_name5)
     VALUES (NULL, "1313 MAIN STREET", "35", "Equipment/Utensils - approved; installed; clean; good repair; capacity", "44", "Premises; personal/cleaning items; vermin-proofing", "48", "Plan Review", NULL, NULL, NULL, NULL);"""
 cursor.execute(sql_c)

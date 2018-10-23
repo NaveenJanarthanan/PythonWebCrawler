@@ -4,13 +4,13 @@ from bs4 import BeautifulSoup
 
 
 
-
+#gets the main page with the search results
 page=requests.get("http://ca.healthinspections.us/napa/search.cfm?start=1&1=1&sd=01/01/1970&ed=03/01/2017&kw1=&kw2=&kw3="
         "&rel1=N.permitName&rel2=N.permitName&rel3=N.permitName&zc=&dtRng=YES&pre=similar")
 
 soup = BeautifulSoup(page.text, 'html.parser')
 
-
+#gets the inspections form page for each restaurant on the search page
 page1=requests.get("http://ca.healthinspections.us/_templates/135/Food%20Inspection/_report_full.cfm?domainID=135&inspectionID=409588&dsn=dhd_135")
 soup1 = BeautifulSoup(page1.text, 'html.parser')
 page2=requests.get("http://ca.healthinspections.us/_templates/135/Food%20Inspection/_report_full.cfm?domainID=135&inspectionID=439495&dsn=dhd_135")
@@ -31,6 +31,9 @@ page9=requests.get("http://ca.healthinspections.us/_templates/135/Food%20Inspect
 soup9 = BeautifulSoup(page9.text, 'html.parser')
 page10=requests.get("http://ca.healthinspections.us/_templates/135/Food%20Inspection/_report_full.cfm?domainID=135&inspectionID=341504&dsn=dhd_135")
 soup10 = BeautifulSoup(page10.text, 'html.parser')
+
+#Finds the facility name, address, inspection date, inspection type, inspection grade and compliance violations
+#stores the data in a variable and prints it to the console for each restaurant
 def main():
     facility_name1 = soup1.find_all('span',class_= 'blackline')[0].get_text()
     address1 = soup1.find_all('span', class_='blackline')[4].get_text()
@@ -253,6 +256,7 @@ def main():
 if __name__ == '__main__':
     main()
 
+#converts the data to json 
 data  = {'facility_name1' : soup1.find_all('span',class_= 'blackline')[0].get_text(),
          'address1' : soup1.find_all('span', class_='blackline')[4].get_text(),
          'inspection_date1' : soup1.find_all('span', class_='blackline')[2].get_text(),
