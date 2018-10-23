@@ -3,7 +3,7 @@ connection = sqlite3.connect("inspections.db")
 
 cursor = connection.cursor()
 #Uncomment the line below if you're running the program more than once, or you can delete the data file
-cursor.execute("""DROP TABLE data;""")
+#cursor.execute("""DROP TABLE data;""")
 
 facility_data = [ ("1313 MAIN STREET", "1313 MAIN ST", "NAPA", "CA", "94559", "11/02/2016", "Routine", "A"),
                   ("641 MAIN STREET", "641 MAIN ST", "SAINT HELENA", "CA", "94574", "11/22/2016","Routine", "A"),
@@ -39,7 +39,7 @@ for x in facility_data:
 
 
 #Uncomment the line below if you're running the program more than once, or you can delete the data file
-cursor.execute("""DROP TABLE compliance;""")
+#cursor.execute("""DROP TABLE compliance;""")
 sql_c = """
 CREATE TABLE compliance (
 facility_number INTEGER PRIMARY KEY,
